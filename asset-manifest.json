@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/goit-react-hw-08-phonebook/static/css/main.b888dfc7.css",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.ab5ba6dd.js",
+    "static/media/layered-solid-white-honeycomb-sxpm4kgvmjhtpplq.jpg": "/goit-react-hw-08-phonebook/static/media/layered-solid-white-honeycomb-sxpm4kgvmjhtpplq.21ff1bd6a613a1fe0323.jpg",
+    "index.html": "/goit-react-hw-08-phonebook/index.html",
+    "main.b888dfc7.css.map": "/goit-react-hw-08-phonebook/static/css/main.b888dfc7.css.map",
+    "main.ab5ba6dd.js.map": "/goit-react-hw-08-phonebook/static/js/main.ab5ba6dd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b888dfc7.css",
+    "static/js/main.ab5ba6dd.js"
+  ]
+}
