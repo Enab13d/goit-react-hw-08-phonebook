@@ -1,3 +1,6 @@
+const breakpoints = [768, 1440];
+const mq = breakpoints.map(bp => `@media screen and (min-width: ${bp}px)`);
+
 export const theme = {
   animation: {
     timingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
@@ -10,6 +13,8 @@ export const theme = {
     darkBlue: '#0026FF',
     phoneColor: '#929394',
     transparentWhiteBg: 'hsla(248, 0%, 100%, 0.20)',
+    red: 'red'
   },
   sizing: value => `${value * 4}px`,
+  mq,
 };

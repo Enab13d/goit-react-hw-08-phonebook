@@ -1,18 +1,22 @@
-import { ContactForm } from '../ContactForm';
-import { Filter } from '../Filter';
-import { ContactList } from '../ContactList';
-import { Wrapper } from './App.styled';
-import { ToastContainer } from 'react-toastify';
+
+
+import { Route, Routes } from 'react-router-dom';
+import { lazy } from 'react';
+
+import { SharedLayout } from 'components/SharedLayout/SharedLayout';
+const SignupPage = lazy(() => import('../Pages/SignupPage'));
+const ContactsPage = lazy(() => import('../Pages/ContactsPage'));
+const LoginPage = lazy(() => import('../Pages/LoginPage'))
 export const App = () => {
   return (
-    <Wrapper>
-      <h1>Phonebook</h1>
-      <ContactForm></ContactForm>
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList></ContactList>
-      <ToastContainer position="top-center"
-autoClose={2000}/>
-    </Wrapper>
+    <div>
+      <Routes>
+        <Route path='/' element={<SharedLayout/>}>
+        <Route index element={<SignupPage />} />
+        <Route path='/login' element={<LoginPage/>} />
+        <Route path='/contacts' element={<ContactsPage/>} />
+        </Route>
+      </Routes>
+</div>
   );
 };
