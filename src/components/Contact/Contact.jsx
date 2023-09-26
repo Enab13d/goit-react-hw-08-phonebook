@@ -6,20 +6,27 @@ import {
   ContactNumber,
 } from './Contact.styled';
 import PropTypes from 'prop-types';
-import { useDeleteContactMutation } from 'services/contactsAPI';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectIsLoading } from 'features/contacts/selectors';
+import { deleteContact } from 'features/contacts/operations';
 import { DeleteIcon } from './Contact.styled';
 import { RotatingLines } from 'react-loader-spinner';
-export const Contact = ({ name, phone, id }) => {
-  const [deleteContact, { originalArgs, isLoading }] =
-    useDeleteContactMutation();
+export const Contact = ({ name, number, id }) => {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+
   return (
     <Item key={id}>
       <ContactBlock>
         <ContactName>{name}</ContactName>
-        <ContactNumber>{phone}</ContactNumber>
+        <ContactNumber>{number}</ContactNumber>
       </ContactBlock>
-      <DeleteBtn type="button" onClick={() => deleteContact(id)} id={id}>
-        {isLoading && originalArgs === id ? (
+      <DeleteBtn
+        type="button"
+        onClick={() => dispatch(deleteContact(id))}
+        id={id}
+      >
+        {isLoading ? (
           <RotatingLines strokeColor="white" width="20" />
         ) : (
           <DeleteIcon title="remove contact" />
@@ -31,6 +38,6 @@ export const Contact = ({ name, phone, id }) => {
 
 Contact.propTypes = {
   name: PropTypes.string.isRequired,
-  phone: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };

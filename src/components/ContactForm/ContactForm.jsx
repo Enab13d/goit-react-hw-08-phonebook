@@ -1,16 +1,16 @@
 import { Field, ContactsForm, Label, SubmitBtn } from './ContactForm.styled';
-import {
-  useFetchContactsQuery,
-  useAddContactMutation,
-} from 'services/contactsAPI';
+import { addContact } from 'features/contacts/operations';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectContacts, selectIsLoading } from 'features/contacts/selectors';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AddContactIcon } from './ContactForm.styled';
 
-
 export const ContactForm = () => {
-  const { data: contacts } = useFetchContactsQuery();
-  const [addContact, { isFetching }] = useAddContactMutation();
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
+  const isLoading = useSelector(selectIsLoading);
+
   const notify = value =>
     toast.warn(`${value} is already in contacts.`, {
       position: 'top-center',
@@ -28,8 +28,10 @@ export const ContactForm = () => {
     if (isContain) {
       return notify(value);
     }
-    addContact({ name: value, phone: number.value });
-    toast.success(`${value} has been added to Your contacts`, {autoClose: 1000});
+    dispatch(addContact({ name: value, phone: number.value }));
+    toast.success(`${value} has been added to Your contacts`, {
+      autoClose: 1000,
+    });
     e.target.reset();
   };
 
@@ -53,7 +55,16 @@ export const ContactForm = () => {
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
       />
-      <SubmitBtn>{isFetching ? 'Adding...' : <><span>Add Contact</span><AddContactIcon title='add contact'/></>}</SubmitBtn>
+      <SubmitBtn>
+        {isLoading ? (
+          'Adding...'
+        ) : (
+          <>
+            <span>Add Contact</span>
+            <AddContactIcon title="add contact" />
+          </>
+        )}
+      </SubmitBtn>
     </ContactsForm>
   );
 };

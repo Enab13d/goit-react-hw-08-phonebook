@@ -1,15 +1,15 @@
+import { logOut } from "features/auth/operations";
+import { selectIsLoggedIn, selectUser } from "features/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
-import { resetCredentials } from "features/authSlice";
-import { selectCurrentUserStatus } from "features/authSlice";
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
-  const email = useSelector(state => state.auth.user.email);
-  const isLoggedIn = useSelector(selectCurrentUserStatus);
+  const user = useSelector(selectUser);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   const handleClick = async () => {
     try {
-      dispatch(resetCredentials());
+      dispatch(logOut());
     } catch (error) {
       console.log(error); 
     }
@@ -18,7 +18,7 @@ export const UserMenu = () => {
 
   return (
     <div>
-      <p>{isLoggedIn ? email : 'not logged in'}</p>
+      <p>{isLoggedIn ? user.email : 'not logged in'}</p>
       <button onClick={handleClick}>Logout</button>
     </div>
   );
