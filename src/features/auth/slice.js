@@ -39,7 +39,11 @@ const authSlice = createSlice({
       },
       [refreshUser.fulfilled] (state, {payload}){
           state.isRefreshing = false;
+          state.isLoggedIn = true;
           state.user = payload;
+      },
+      [refreshUser.rejected] (state) {
+        state.isRefreshing = false;
       }
   },
 });

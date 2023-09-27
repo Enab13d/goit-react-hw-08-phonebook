@@ -14,13 +14,13 @@ export const ContactList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
   const contacts = useSelector(selectContacts);
-
+  
   const filteredContacts = contacts
     ? [...contacts].filter(contact =>
         contact.name.toLowerCase().includes(filter.toLowerCase())
       )
     : null;
-
+    console.log(filteredContacts);
   return (
     <>
       {isLoading && (

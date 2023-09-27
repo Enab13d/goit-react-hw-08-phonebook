@@ -9,6 +9,7 @@ import { AddContactIcon } from './ContactForm.styled';
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
+
   const isLoading = useSelector(selectIsLoading);
 
   const notify = value =>
@@ -27,8 +28,9 @@ export const ContactForm = () => {
       : null;
     if (isContain) {
       return notify(value);
-    }
-    dispatch(addContact({ name: value, phone: number.value }));
+    };
+    const contact = { name: value, number: number.value };
+    dispatch(addContact(contact));
     toast.success(`${value} has been added to Your contacts`, {
       autoClose: 1000,
     });

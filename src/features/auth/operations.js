@@ -13,7 +13,7 @@ export const logIn = createAsyncThunk('auth/logIn', async (credentials, thunkAPI
     setHeader(response.data.token);
     return response;
   } catch (error) {
-    thunkAPI.rejectWithValue(error);
+    return thunkAPI.rejectWithValue(error);
   }
 });
 export const signUp = createAsyncThunk(
@@ -24,7 +24,7 @@ export const signUp = createAsyncThunk(
         setHeader(response.data.token);
         return response.data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -35,7 +35,7 @@ export const logOut = createAsyncThunk(
             await axios.post('/users/logout');
             clearHeader();
         } catch (error) {
-            thunkAPI.rejectWithValue(error);
+            return thunkAPI.rejectWithValue(error);
         }
     }
 );
@@ -45,15 +45,15 @@ export const refreshUser = createAsyncThunk(
         const state = thunkAPI.getState();
         const token = state.auth.token;
         if (!token) {
-            thunkAPI.rejectWithValue('An error has occured because token is invalid or not present')
+            return thunkAPI.rejectWithValue('An error has occured because token is invalid or not present')
         }
         try {
             setHeader(token);
-            const response = await axios.post('/users/current');
+            const response = await axios.get('/users/current');
             return response.data;
             
         } catch (error) {
-            thunkAPI.rejectWithValue(error.message);
+            return thunkAPI.rejectWithValue(error.message);
         }
     }
 )

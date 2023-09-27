@@ -11,10 +11,12 @@ const initialState = {
   isLoading: false,
   error: null,
 };
-const handlePending = state => (state.isLoading = true);
-const handleRejected = (state, { payload }) => {
+const handlePending = state => {
+  state.isLoading = true;
+};
+const handleRejected = (state, {error}) => {
   state.isLoading = false;
-  state.error = payload;
+  state.error = error.message;
 };
 
 const contactsSlice = createSlice({
@@ -31,14 +33,20 @@ const contactsSlice = createSlice({
     [editContact.rejected]: handleRejected,
     [fetchContacts.fulfilled](state, { payload }) {
       state.isLoading = false;
-      state.items = payload.data;
+      state.items = payload;
     },
-    [addContact.fulfilled](state, { payload }) {
-      state.items.push({ payload });
+    [addContact.fulfilled](state, action) {
       state.isLoading = false;
+      state.error = null;
+      state.items.push(action.payload.data);
+      
     },
-    [deleteContact.fulfilled](state, { payload }) {
-      state.items.filter(item => item.id !== payload.id);
+    [deleteContact.fulfilled](state, {payload}) {
+      const index = state.items.findIndex(
+        contact => contact.id === payload.data.id
+      );
+      console.log(index);
+      state.items.splice(index, 1);
       state.isLoading = false;
     },
     [editContact.fulfilled](state, { payload }) {
