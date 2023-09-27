@@ -3,7 +3,8 @@ import { lazy, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIsRefreshing } from 'features/auth/selectors';
 import { refreshUser } from 'features/auth/operations';
-
+import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
+import { RestrictedRoute } from 'components/RestrictedRoute/RestrictedRoute';
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 const SignupPage = lazy(() => import('../Pages/SignupPage'));
 const ContactsPage = lazy(() => import('../Pages/ContactsPage'));
@@ -22,9 +23,9 @@ export const App = () => {
     <div>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<SignupPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/contacts" element={<ContactsPage />} />
+          <Route index element={<RestrictedRoute component={<SignupPage />}/>} />
+          <Route path="/login" element={<RestrictedRoute component={<LoginPage />}/>} />
+          <Route path="/contacts" element={<PrivateRoute component={<ContactsPage />}/>} />
         </Route>
       </Routes>
     </div>

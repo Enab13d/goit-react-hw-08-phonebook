@@ -10,32 +10,34 @@ export const ContactList = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const filter = useSelector(getFilterValue);
+  const contacts = useSelector(selectContacts);
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
-  const contacts = useSelector(selectContacts);
+  
   
   const filteredContacts = contacts
     ? [...contacts].filter(contact =>
         contact.name.toLowerCase().includes(filter.toLowerCase())
       )
-    : null;
-    console.log(filteredContacts);
+    : [];
+  
+ 
   return (
     <>
-      {isLoading && (
+      {isLoading && !contacts.length && (
         <>
           <Loader />
         </>
       )}
       <List>
-        {filteredContacts
-          ? filteredContacts.map(({ name, number, id }) => {
+        {filteredContacts ?
+         filteredContacts.map(({ name, number, id }) => {
               return (
                 <Contact key={id} id={id} name={name} number={number}></Contact>
               );
-            })
-          : null}
+            }) : null
+          }
       </List>
     </>
   );
