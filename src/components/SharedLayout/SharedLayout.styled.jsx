@@ -6,13 +6,13 @@ export const Container = styled.div`
   max-width: 420px;
 
   ${theme.mq[0]} {
-    width: 768px;
+    max-width: 768px;
     margin-left: auto;
     margin-right: auto;
-  }
+  };
   ${theme.mq[1]} {
-    width: 1440px;
-  }
+    max-width: 1440px;
+  };
 `;
 export const HeaderContentWrapper = styled.div`
 ${theme.mq[0]} {

@@ -53,12 +53,13 @@ const contactsSlice = createSlice({
       state.isDeleting = false;
     },
     [editContact.fulfilled](state, { payload }) {
-      state.items.map(item => {
-        if (item.id === payload.id) {
-          return (item = payload);
+      state.items = state.items.map(item => {
+        if (item.id === payload.data.id) {
+          return (item = payload.data);
         }
         return item;
       });
+      state.isLoading = false;
     },
   },
 });

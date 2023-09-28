@@ -15,6 +15,8 @@ export const theme = {
     transparentWhiteBg: 'hsla(248, 0%, 100%, 0.20)',
     red: 'red'
   },
+  transitionDuration:'250ms',
+  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
   sizing: value => `${value * 4}px`,
   mq,
 };

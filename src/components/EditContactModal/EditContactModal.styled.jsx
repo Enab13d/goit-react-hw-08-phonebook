@@ -1,8 +1,25 @@
-import styled from '@emotion/styled';
-import { theme } from 'constants';
-import { BsPersonAdd } from 'react-icons/bs';
+import styled from "@emotion/styled";
+import { theme } from "constants";
 
-export const ContactsForm = styled.form`
+export const Overlay = styled.div`
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: rgba(0, 0, 0, 0.8);
+z-index: 1200;
+opacity: ${(props) => (props.expanded ? 1 : 0)};
+transition: opacity 0.8s ease-in-out;
+`
+export const ModalWindow = styled.div`
+max-width: calc(100vw - ${theme.sizing(12)});
+max-height: calc(100vh - ${theme.sizing(6)});
+`
+export const EditContactsForm = styled.form`
 width: calc(100% - 18px);
 
 ${theme.mq[0]} {
@@ -16,17 +33,17 @@ ${theme.mq[0]} {
   border-radius: 8px;
   padding: ${theme.sizing(1)};
 `;
-export const Label = styled.label`
+export const EditFormLabel = styled.label`
   margin-bottom: ${theme.sizing(2)};
 `;
-export const Field = styled.input`
+export const EditFormField = styled.input`
   margin-bottom: ${theme.sizing(2)};
   height: ${theme.sizing(5)};
   &: last-of-type {
     margin-bottom: ${theme.sizing(4)};
   }
 `;
-export const SubmitBtn = styled.button`
+export const EditFormSubmitBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,9 +60,5 @@ export const SubmitBtn = styled.button`
     color: white;
     background-color: ${theme.colors.darkBlue};
   }
+  margin-bottom: ${theme.sizing(2)};
 `;
-export const AddContactIcon = styled(BsPersonAdd)`
-width: 24px;
-height: 24px;
-margin-left: ${theme.sizing(2)};
-`

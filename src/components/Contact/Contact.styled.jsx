@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { theme } from 'constants';
 import { AiOutlineDelete } from 'react-icons/ai';
+import { FiEdit2 } from "react-icons/fi";
 export const Item = styled.li`
   display: flex;
   justify-content: space-between;
@@ -8,7 +9,7 @@ export const Item = styled.li`
   padding-left: ${theme.sizing(2)};
   padding-right: ${theme.sizing(2)};
 `;
-export const DeleteBtn = styled.button`
+export const ContactActionBtn = styled.button`
   width: 40px;
   height: 30px;
   border-radius: 8px;
@@ -37,4 +38,12 @@ color: ${theme.colors.phoneColor}
 export const DeleteIcon = styled(AiOutlineDelete)`
 width: 20px;
 height: 20px;
+`
+export const EditIcon = styled(FiEdit2)`
+width: 20px;
+height: 20px;
+`
+export const ButtonHolder = styled.div`
+display: flex;
+column-gap: ${theme.sizing(3)};
 `
