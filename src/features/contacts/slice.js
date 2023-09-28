@@ -10,6 +10,7 @@ const initialState = {
   items: [],
   isLoading: false,
   error: null,
+  isDeleting: false,
 };
 const handlePending = state => {
   state.isLoading = true;
@@ -17,6 +18,7 @@ const handlePending = state => {
 const handleRejected = (state, {error}) => {
   state.isLoading = false;
   state.error = error.message;
+  state.isDeleting = false;
 };
 
 const contactsSlice = createSlice({
@@ -25,7 +27,9 @@ const contactsSlice = createSlice({
   extraReducers: {
     [fetchContacts.pending]: handlePending,
     [addContact.pending]: handlePending,
-    [deleteContact.pending]: handlePending,
+    [deleteContact.pending] (state) {
+      state.isDeleting = true;
+    },
     [editContact.pending]: handlePending,
     [fetchContacts.rejected]: handleRejected,
     [addContact.rejected]: handleRejected,
@@ -46,7 +50,7 @@ const contactsSlice = createSlice({
         contact => contact.id === payload.data.id
       );
       state.items.splice(index, 1);
-      state.isLoading = false;
+      state.isDeleting = false;
     },
     [editContact.fulfilled](state, { payload }) {
       state.items.map(item => {

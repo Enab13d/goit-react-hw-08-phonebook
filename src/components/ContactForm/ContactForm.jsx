@@ -1,16 +1,17 @@
 import { Field, ContactsForm, Label, SubmitBtn } from './ContactForm.styled';
 import { addContact } from 'features/contacts/operations';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectContacts, selectIsLoading } from 'features/contacts/selectors';
+import { selectContacts, selectIsLoading, selectIsDeleting } from 'features/contacts/selectors';
 import { toast } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 import { AddContactIcon } from './ContactForm.styled';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
-
   const isLoading = useSelector(selectIsLoading);
+  const isDeleting = useSelector(selectIsDeleting);
 
   const notify = value =>
     toast.warn(`${value} is already in contacts.`, {
@@ -19,6 +20,7 @@ export const ContactForm = () => {
     });
   const handleSubmit = e => {
     e.preventDefault();
+
     const { name, number } = e.target.elements;
     const value = name.value;
     const isContain = contacts
@@ -35,6 +37,7 @@ export const ContactForm = () => {
       autoClose: 1000,
     });
     e.target.reset();
+
   };
 
   return (
@@ -58,7 +61,7 @@ export const ContactForm = () => {
         required
       />
       <SubmitBtn>
-        {isLoading ? (
+        {isLoading ? !isDeleting && (
           'Adding...'
         ) : (
           <>

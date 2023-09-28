@@ -20,7 +20,7 @@ export const App = () => {
   return isRefreshing ? (
     <p>Refreshing... </p>
   ) : (
-    <div>
+
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<RestrictedRoute component={<SignupPage />}/>} />
@@ -28,6 +28,6 @@ export const App = () => {
           <Route path="/contacts" element={<PrivateRoute component={<ContactsPage />}/>} />
         </Route>
       </Routes>
-    </div>
+
   );
 };

@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { signUp } from 'features/auth/operations';
+import {CustomSignupForm, SignupLabel, SignupField, SignuptBtn} from '../SignupForm/SignupForm.styled';
 
 export const SignupForm = () => {
   const dispatch = useDispatch();
@@ -17,14 +18,14 @@ export const SignupForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Name</label>
-      <input type="text" name="name" />
-      <label htmlFor="email">Email</label>
-      <input type="email" name="email" />
-      <label htmlFor="password">Password</label>
-      <input type="password" name="password" />
-      <button type="submit">Sign Up</button>
-    </form>
+    <CustomSignupForm onSubmit={handleSubmit}>
+      <SignupLabel htmlFor="name">Name</SignupLabel>
+      <SignupField type="text" name="name" />
+      <SignupLabel htmlFor="email">Email</SignupLabel>
+      <SignupField type="email" name="email" />
+      <SignupLabel htmlFor="password">Password</SignupLabel>
+      <SignupField type="password" name="password" />
+      <SignuptBtn type="submit">Sign Up</SignuptBtn>
+    </CustomSignupForm>
   );
 };
