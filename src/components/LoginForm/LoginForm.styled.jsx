@@ -1,31 +1,33 @@
 import styled from '@emotion/styled';
 import { theme } from 'constants';
 
-
 export const CustomLoginForm = styled.form`
-max-width: 100%;
+  max-width: 100%;
 
-${theme.mq[0]} {
-  width: 380px;
-  margin-left: auto;
-  margin-right: auto;
-}
+  ${theme.mq[0]} {
+    width: 380px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   display: flex;
   flex-direction: column;
   border-radius: 8px;
   padding: ${theme.sizing(4)};
-  background: rgb(13,32,141);
-  background: linear-gradient(90deg, rgba(13,32,141,0.6307773109243697) 45%, rgba(0,174,255,1) 100%);
+  background-color: ${theme.colors.transparentWhiteBg};
+  backdrop-filter: blur(8px);
 `;
 
 export const LoginLabel = styled.label`
   margin-bottom: ${theme.sizing(2)};
   font-weight: 500;
+  color: ${theme.colors.abmientWhite};
+  font-size: 18px;
 `;
 
 export const LoginField = styled.input`
   margin-bottom: ${theme.sizing(2)};
-  height: ${theme.sizing(5)};
+  padding: ${theme.sizing(3)};
+  font-size: 18px;
   background-color: hsla(193, 35%, 89%, 1);
   border-radius: 4px;
   padding-left: ${theme.sizing(2)};

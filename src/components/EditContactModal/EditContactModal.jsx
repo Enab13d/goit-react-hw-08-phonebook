@@ -2,9 +2,10 @@ import {  useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { editContact } from 'features/contacts/operations';
-import { Overlay, ModalWindow, EditContactsForm, EditFormField, EditFormLabel, EditFormSubmitBtn} from './EditContactModal.styled';
+import { Overlay, ModalWindow, EditContactsForm, EditFormField, EditFormLabel, EditFormSubmitBtn, CloseIcon} from './EditContactModal.styled';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import { EditIcon } from 'components/Contact/Contact.styled';
 
 
 export const EditContactModal = ({ id, name, number, onModalClose, onClick, expanded }) => {
@@ -24,14 +25,6 @@ export const EditContactModal = ({ id, name, number, onModalClose, onClick, expa
     if (name.value === name.defaultValue && number.value === number.defaultValue) {
         return;
     }
-    // const isContain = contacts
-    //   ? contacts.some(
-    //       contact => contact.name.toLowerCase() === value.toLowerCase()
-    //     )
-    //   : null;
-    // if (isContain) {
-    //   return notify(value);
-    // }
     const contact = { name: value, number: number.value };
     dispatch(editContact({ id, contact }));
     toast.success(`Contact has been succesfully updated`, {
@@ -63,9 +56,9 @@ export const EditContactModal = ({ id, name, number, onModalClose, onClick, expa
           required
           defaultValue={number}
         />
-        <EditFormSubmitBtn type="submit">Edit</EditFormSubmitBtn>
+          <EditFormSubmitBtn type="submit">Edit<EditIcon style={{ marginLeft: 12}}/></EditFormSubmitBtn>
         <EditFormSubmitBtn type="button" onClick={onClick} id="close-modal">
-          Close Modal
+          Close<CloseIcon/>
         </EditFormSubmitBtn>
       </EditContactsForm>
       </ModalWindow>

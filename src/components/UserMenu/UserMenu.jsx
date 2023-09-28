@@ -1,7 +1,7 @@
 import { logOut } from "features/auth/operations";
 import { selectIsLoggedIn, selectUser } from "features/auth/selectors";
 import { useDispatch, useSelector } from "react-redux";
-import { LogoutBtn, USerMenuContainer, UserLabel} from "./UserMenu.styled";
+import { LogoutBtn, USerMenuContainer, UserLabel, LogoutIcon} from "./UserMenu.styled";
 
 export const UserMenu = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export const UserMenu = () => {
   return (
     <USerMenuContainer>
       <UserLabel>{isLoggedIn ? user.email : 'not logged in'}</UserLabel>
-      <LogoutBtn onClick={handleClick}>Logout</LogoutBtn>
+      <LogoutBtn onClick={handleClick}>Logout<LogoutIcon/></LogoutBtn>
     </USerMenuContainer>
   );
 };

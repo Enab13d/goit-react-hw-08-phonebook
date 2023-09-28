@@ -20,13 +20,10 @@ ${theme.mq[0]} {
   align-items: baseline;
 justify-content: space-between;
 }
-padding: ${theme.sizing(2)};
 `
 
 export const StyledHeader = styled.header`
 width: 100%;
-padding-top: ${theme.sizing(3)};
-padding-bottom: ${theme.sizing(3)};
 border-bottom: 1px solid ${theme.colors.darkBlue};
 background: rgb(13,32,141);
 background: linear-gradient(90deg, rgba(13,32,141,0.8996848739495799) 45%, rgba(0,174,255,1) 100%);
@@ -43,7 +40,24 @@ export const StyledNavLink = styled(NavLink)`
   font-size: 18px;
   color: white;
   text-decoration: none;
+  position: relative;
   &.active {
-    text-decoration: underline;
+    &: after {
+      transform: scale(1);
+    }
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0px;
+    display: inline-block;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: red;
+    transform: scale(0);
+    transition: transform ${theme.transitionDuration} ${theme.transitionTimingFunction};
+
   }
 `;

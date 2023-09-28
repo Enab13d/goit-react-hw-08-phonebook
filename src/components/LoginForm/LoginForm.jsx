@@ -16,11 +16,11 @@ export const LoginForm = () => {
     e.target.reset();
   };
   return (
-    <CustomLoginForm onSubmit={handleSubmit}>
+    <CustomLoginForm autoComplete="off" onSubmit={handleSubmit}>
       <LoginLabel htmlFor="email">Email</LoginLabel>
-      <LoginField type="email" name="email" />
+      <LoginField type="email" name="email" id='email'/>
       <LoginLabel htmlFor="password">Password</LoginLabel>
-      <LoginField type="password" name="password" />
+      <LoginField type="password" name="password" id='password'/>
       <LogintBtn type="submit">Log In</LogintBtn>
     </CustomLoginForm>
   );

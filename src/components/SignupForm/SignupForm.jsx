@@ -18,13 +18,13 @@ export const SignupForm = () => {
   };
 
   return (
-    <CustomSignupForm onSubmit={handleSubmit}>
+    <CustomSignupForm autoComplete="off" onSubmit={handleSubmit}>
       <SignupLabel htmlFor="name">Name</SignupLabel>
-      <SignupField type="text" name="name" />
+      <SignupField type="text" name="name" id='name'/>
       <SignupLabel htmlFor="email">Email</SignupLabel>
-      <SignupField type="email" name="email" />
+      <SignupField type="email" name="email" id='email' />
       <SignupLabel htmlFor="password">Password</SignupLabel>
-      <SignupField type="password" name="password" />
+      <SignupField type="password" name="password" id='password'/>
       <SignuptBtn type="submit">Sign Up</SignuptBtn>
     </CustomSignupForm>
   );

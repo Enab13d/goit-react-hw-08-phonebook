@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { theme } from "constants";
-
+import { AiOutlineCloseCircle } from "react-icons/ai";
 export const Overlay = styled.div`
 position: fixed;
 top: 0;
@@ -12,8 +12,15 @@ justify-content: center;
 align-items: center;
 background-color: rgba(0, 0, 0, 0.8);
 z-index: 1200;
+pointer-events: ${(props) => (props.expanded ? 'auto' : 'none')};
 opacity: ${(props) => (props.expanded ? 1 : 0)};
-transition: opacity 0.8s ease-in-out;
+transition: opacity ${theme.transitionDuration} ${theme.transitionTimingFunction};
+
+div {
+  transform: scale${(props) => (props.expanded ? '(1)' : '(0.7)')};
+  transition: transform ${theme.transitionDuration} ${theme.transitionTimingFunction};
+}
+
 `
 export const ModalWindow = styled.div`
 max-width: calc(100vw - ${theme.sizing(12)});
@@ -21,6 +28,8 @@ max-height: calc(100vh - ${theme.sizing(6)});
 `
 export const EditContactsForm = styled.form`
 width: calc(100% - 18px);
+  background-color: hsla(212, 5%, 47%, 1);
+  backdrop-filter: blur(6px);
 
 ${theme.mq[0]} {
   width: 380px;
@@ -29,16 +38,22 @@ ${theme.mq[0]} {
 };
   display: flex;
   flex-direction: column;
-  border: 2px solid ${theme.colors.formBorder};
+  border: 1px solid hsla(193, 35%, 89%, 1);
   border-radius: 8px;
-  padding: ${theme.sizing(1)};
+  padding: ${theme.sizing(4)};
+  
 `;
 export const EditFormLabel = styled.label`
   margin-bottom: ${theme.sizing(2)};
 `;
 export const EditFormField = styled.input`
   margin-bottom: ${theme.sizing(2)};
-  height: ${theme.sizing(5)};
+  background-color: hsla(193, 35%, 89%, 1);
+  border-radius: 4px;
+  padding-left: ${theme.sizing(2)};
+  padding-top: ${theme.sizing(2)};
+  padding-bottom: ${theme.sizing(2)};
+  border: none;
   &: last-of-type {
     margin-bottom: ${theme.sizing(4)};
   }
@@ -53,8 +68,8 @@ export const EditFormSubmitBtn = styled.button`
   border-radius: 8px;
   border: none;
   font-weight: 600;
-  background-color: ${theme.colors.formBorder};
-  color: white;
+  background-color: black;
+  color: hsla(193, 35%, 89%, 1);
   &:hover,
   &:focus {
     color: white;
@@ -62,3 +77,9 @@ export const EditFormSubmitBtn = styled.button`
   }
   margin-bottom: ${theme.sizing(2)};
 `;
+export const CloseIcon = styled(AiOutlineCloseCircle)`
+width: 20px;
+height: 20px;
+margin-left: 12px;
+pointer-events: none;
+`

@@ -3,16 +3,12 @@ import { theme } from 'constants';
 import { BsPersonAdd } from 'react-icons/bs';
 
 export const ContactsForm = styled.form`
-width: calc(100% - 18px);
+width: 100%;
 
-${theme.mq[0]} {
-  width: 380px;
-  margin-left: auto;
-  margin-right: auto;
-};
+
   display: flex;
   flex-direction: column;
-  border: 2px solid ${theme.colors.formBorder};
+
   border-radius: 8px;
   padding: ${theme.sizing(1)};
 `;
@@ -22,6 +18,13 @@ export const Label = styled.label`
 export const Field = styled.input`
   margin-bottom: ${theme.sizing(2)};
   height: ${theme.sizing(5)};
+  padding-left: ${theme.sizing(2)};
+  padding-top: ${theme.sizing(1)};
+  padding-bottom: ${theme.sizing(1)};
+  background-color: ${theme.colors.abmientWhite};
+  border-radius: 4px;
+  font-size: 18px;
+  border: none;
   &: last-of-type {
     margin-bottom: ${theme.sizing(4)};
   }
@@ -48,4 +51,17 @@ export const AddContactIcon = styled(BsPersonAdd)`
 width: 24px;
 height: 24px;
 margin-left: ${theme.sizing(2)};
+`
+export const ContactsWrapper = styled.div`
+width: calc(100% - 18px);
+padding: ${theme.sizing(5)};
+border-radius: 8px;
+${theme.mq[0]} {
+  width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+};
+  background-color: ${theme.colors.transparentWhiteBg};
+  backdrop-filter: blur(12px);
+
 `

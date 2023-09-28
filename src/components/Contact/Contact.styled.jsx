@@ -11,7 +11,7 @@ export const Item = styled.li`
 `;
 export const ContactActionBtn = styled.button`
   width: 40px;
-  height: 30px;
+  padding: ${theme.sizing(1)};
   border-radius: 8px;
   border: none;
   font-weight: 600;
@@ -33,7 +33,9 @@ line-height: 0.8;
 export const ContactNumber = styled.p`
 font-size: 14px;
 line-height: 0.8;
-color: ${theme.colors.phoneColor}
+font-weight: 600;
+color: ${theme.colors.phoneColor};
+& 
 `
 export const DeleteIcon = styled(AiOutlineDelete)`
 width: 20px;

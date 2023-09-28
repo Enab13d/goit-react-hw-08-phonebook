@@ -5,7 +5,7 @@ export const List = styled.ul`
   width: 100%;
   padding-left: 0;
   list-style: none;
-  padding: ${theme.sizing(1)};
+  background-color: ${theme.colors.abmientWhite};
   li:nth-of-type(even) {
     background-color: ${theme.colors.contactBg};
   }

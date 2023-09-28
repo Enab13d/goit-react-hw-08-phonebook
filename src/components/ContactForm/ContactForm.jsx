@@ -41,7 +41,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <ContactsForm onSubmit={handleSubmit}>
+    <ContactsForm autoComplete="off" onSubmit={handleSubmit}>
       <Label htmlFor="name">Name</Label>
       <Field
         type="text"

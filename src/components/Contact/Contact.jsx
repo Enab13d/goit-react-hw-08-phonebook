@@ -65,8 +65,7 @@ export const Contact = ({ name, number, id }) => {
           </ContactActionBtn>
         </ButtonHolder>
       </Item>
-      {isModalOpen && (
-        <EditContactModal
+      <EditContactModal
           id={id}
           name={name}
           number={number}
@@ -74,7 +73,6 @@ export const Contact = ({ name, number, id }) => {
           onClick={onBackdropClick}
           expanded={isModalOpen}
         />
-      )}
     </>
   );
 };
