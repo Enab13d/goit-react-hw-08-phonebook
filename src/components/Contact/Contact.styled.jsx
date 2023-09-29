@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { theme } from 'constants';
 import { AiOutlineDelete } from 'react-icons/ai';
-import { FiEdit2 } from "react-icons/fi";
+import { FiEdit2 } from 'react-icons/fi';
 export const Item = styled.li`
   display: flex;
   justify-content: space-between;
@@ -17,35 +17,37 @@ export const ContactActionBtn = styled.button`
   font-weight: 600;
   background-color: ${theme.colors.formBorder};
   color: white;
+  transition: background-color ${theme.transitionDuration}
+      ${theme.transitionTimingFunction},
+    color ${theme.transitionDuration}
+      ${theme.transitionTimingFunction};
   &:hover,
   &:focus {
-    color: white;
+    color: ${theme.colors.abmientWhite};
     background-color: ${theme.colors.darkBlue};
   }
 `;
-export const ContactBlock = styled.div`
-
+export const ContactBlock = styled.div``;
+export const ContactName = styled.p`
+  font-weight: 600;
+  line-height: 0.8;
 `;
-export const  ContactName = styled.p`
-font-weight: 600;
-line-height: 0.8;
-`
 export const ContactNumber = styled.p`
 font-size: 14px;
 line-height: 0.8;
 font-weight: 600;
 color: ${theme.colors.phoneColor};
 & 
-`
+`;
 export const DeleteIcon = styled(AiOutlineDelete)`
-width: 20px;
-height: 20px;
-`
+  width: 20px;
+  height: 20px;
+`;
 export const EditIcon = styled(FiEdit2)`
-width: 20px;
-height: 20px;
-`
+  width: 20px;
+  height: 20px;
+`;
 export const ButtonHolder = styled.div`
-display: flex;
-column-gap: ${theme.sizing(3)};
-`
+  display: flex;
+  column-gap: ${theme.sizing(3)};
+`;

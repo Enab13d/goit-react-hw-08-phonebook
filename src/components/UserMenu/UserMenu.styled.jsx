@@ -19,10 +19,14 @@ display: flex;
 align-items: center;
 padding: ${theme.sizing(2)};
 column-gap: ${theme.sizing(2)};
+transition: background-color ${theme.transitionDuration}
+      ${theme.transitionTimingFunction},
+    color ${theme.transitionDuration}
+      ${theme.transitionTimingFunction};
 &:hover,
 &:focus {
-  color: white;
-  background-color: ${theme.colors.formBorder};
+  color: black;
+  background-color: hsla(193, 35%, 89%, 1);
 }
 `;
 export const UserLabel = styled.p`

@@ -52,9 +52,14 @@ export const SignuptBtn = styled.button`
   font-weight: 600;
   background-color: hsla(111, 75%, 50%, 1);
   color: white;
+  transition: background-color ${theme.transitionDuration}
+      ${theme.transitionTimingFunction},
+    color ${theme.transitionDuration}
+      ${theme.transitionTimingFunction};
   &:hover,
   &:focus {
-    color: white;
+    color: hsla(193, 35%, 89%, 1);
     background-color: ${theme.colors.darkBlue};
   }
+  
 `;
