@@ -1,4 +1,4 @@
-import {  useDispatch } from 'react-redux';
+import {  useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { editContact } from 'features/contacts/operations';
@@ -6,9 +6,10 @@ import { Overlay, ModalWindow, EditContactsForm, EditFormField, EditFormLabel, E
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { EditIcon } from 'components/Contact/Contact.styled';
+import { selectContacts } from 'features/contacts/selectors';
 
 
-export const EditContactModal = ({ id, name, number, onModalClose, onClick, expanded }) => {
+export const EditContactModal = ({ id, name, number, onModalClose, hideModal, expanded }) => {
   useEffect(() => {
     window.addEventListener('keydown', onModalClose);
     return () => {
@@ -16,6 +17,7 @@ export const EditContactModal = ({ id, name, number, onModalClose, onClick, expa
     };
   }, [onModalClose]);
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -26,14 +28,23 @@ export const EditContactModal = ({ id, name, number, onModalClose, onClick, expa
         return;
     }
     const contact = { name: value, number: number.value };
+    const isContain = contacts
+      ? contacts.some(
+          contact => contact.name.toLowerCase() === value.toLowerCase() && value.toLowerCase() !== name.defaultValue.toLowerCase()
+        )
+      : null;
+    if (isContain) {
+      return toast.warn(`${value} is already in contacts`);
+    };
     dispatch(editContact({ id, contact }));
     toast.success(`Contact has been succesfully updated`, {
       autoClose: 1000,
     });
     e.target.reset();
+    hideModal();
   };
   return ReactDOM.createPortal(
-    <Overlay onClick={onClick} id="overlay" expanded={expanded}>
+    <Overlay expanded={expanded}>
       <ModalWindow >
       <EditContactsForm autoComplete="off" onSubmit={handleSubmit}>
         <EditFormLabel htmlFor="name"></EditFormLabel>
@@ -57,7 +68,7 @@ export const EditContactModal = ({ id, name, number, onModalClose, onClick, expa
           defaultValue={number}
         />
           <EditFormSubmitBtn type="submit">Edit<EditIcon style={{ marginLeft: 12}}/></EditFormSubmitBtn>
-        <EditFormSubmitBtn type="button" onClick={onClick} id="close-modal">
+        <EditFormSubmitBtn type="button" onClick={hideModal} id="close-modal">
           Close<CloseIcon/>
         </EditFormSubmitBtn>
       </EditContactsForm>
@@ -69,5 +80,5 @@ export const EditContactModal = ({ id, name, number, onModalClose, onClick, expa
 
 EditContactModal.propTypes = {
     id: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
+    hideModal: PropTypes.func.isRequired,
   };

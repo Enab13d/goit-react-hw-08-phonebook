@@ -3,7 +3,7 @@ import { theme } from 'constants';
 
 export const CustomLoginForm = styled.form`
   max-width: 100%;
-
+  margin-top: ${theme.sizing(7)};
   ${theme.mq[0]} {
     width: 380px;
     margin-left: auto;

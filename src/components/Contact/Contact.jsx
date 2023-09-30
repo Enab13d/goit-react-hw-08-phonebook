@@ -32,16 +32,11 @@ export const Contact = ({ name, number, id }) => {
       hideModal();
     }
   };
-  const onBackdropClick = e => {
-    if (e.target.id === 'overlay' || e.target.id === 'close-modal') {
-      hideModal();
-    }
-  };
+
   const handleDeleteContact = e => {
-    const contactId = e.currentTarget.id;
-    if (contactId === id) {
+    if (e.currentTarget.id === id) {
       showSpinnerRef.current = true;
-      dispatch(deleteContact(contactId));
+      dispatch(deleteContact(e.currentTarget.id));
     }
   };
 
@@ -70,7 +65,7 @@ export const Contact = ({ name, number, id }) => {
           name={name}
           number={number}
           onModalClose={onModalClose}
-          onClick={onBackdropClick}
+          hideModal={hideModal}
           expanded={isModalOpen}
         />
     </>

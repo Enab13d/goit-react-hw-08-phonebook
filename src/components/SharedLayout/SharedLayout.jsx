@@ -19,11 +19,12 @@ export const SharedLayout = () => {
         <Container>
           <HeaderContentWrapper>
             <NavBar>
+              <StyledNavLink to="/">Home</StyledNavLink>
               {isLoggedIn ? (
                 <StyledNavLink to="/contacts">Contacts</StyledNavLink>
               ) : (
                 <>
-                  <StyledNavLink to="/">Signup</StyledNavLink>
+                  <StyledNavLink to="/register">Signup</StyledNavLink>
                   <StyledNavLink to="/login">Login</StyledNavLink>
                 </>
               )}

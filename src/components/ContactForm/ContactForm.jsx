@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectContacts, selectIsLoading, selectIsDeleting } from 'features/contacts/selectors';
 import { toast } from 'react-toastify';
 
-import 'react-toastify/dist/ReactToastify.css';
+
 import { AddContactIcon } from './ContactForm.styled';
 
 export const ContactForm = () => {

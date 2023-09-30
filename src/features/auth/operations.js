@@ -13,7 +13,8 @@ export const logIn = createAsyncThunk('auth/logIn', async (credentials, thunkAPI
     setHeader(response.data.token);
     return response;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error);
+    clearHeader();
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 export const signUp = createAsyncThunk(
@@ -24,7 +25,8 @@ export const signUp = createAsyncThunk(
         setHeader(response.data.token);
         return response;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      clearHeader();
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -35,7 +37,7 @@ export const logOut = createAsyncThunk(
             await axios.post('/users/logout');
             clearHeader();
         } catch (error) {
-            return thunkAPI.rejectWithValue(error);
+            return thunkAPI.rejectWithValue(error.message);
         }
     }
 );

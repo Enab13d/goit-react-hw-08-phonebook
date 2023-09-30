@@ -56,6 +56,7 @@ export const ContactsWrapper = styled.div`
 width: calc(100% - 18px);
 padding: ${theme.sizing(5)};
 border-radius: 8px;
+margin-top: ${theme.sizing(7)};
 ${theme.mq[0]} {
   width: 380px;
   margin-left: auto;

@@ -23,11 +23,17 @@ div {
 
 `
 export const ModalWindow = styled.div`
-max-width: calc(100vw - ${theme.sizing(12)});
+width: calc(100vw - 38px);
+margin-right: auto;
+${theme.mq[0]} {
+  width: 380px;
+  margin-left: auto;
+
+};
 max-height: calc(100vh - ${theme.sizing(6)});
 `
 export const EditContactsForm = styled.form`
-width: calc(100% - 18px);
+width: 100%;
   background-color: hsla(212, 5%, 47%, 1);
   backdrop-filter: blur(6px);
 
