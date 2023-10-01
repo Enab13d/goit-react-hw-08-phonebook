@@ -55,9 +55,8 @@ const authSlice = createSlice({
       state.user = payload;
       state.error = null;
     },
-    [refreshUser.rejected](state, { payload }) {
+    [refreshUser.rejected](state) {
       state.isRefreshing = false;
-      state.error = payload;
     },
   },
 });
