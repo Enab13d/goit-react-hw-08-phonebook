@@ -7,15 +7,15 @@ import {
   LogintBtn,
 } from './LoginForm.styled';
 import { toast } from 'react-toastify';
-import { selectError, selectIsRefreshing, selectIsLoggedIn } from 'features/auth/selectors';
+import {
+  selectError,
+} from 'features/auth/selectors';
 import { useSelector } from 'react-redux';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
   const error = useSelector(selectError);
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault();
     const { email, password } = e.target.elements;
     const credentials = {
@@ -23,9 +23,9 @@ export const LoginForm = () => {
       password: password.value,
     };
 
-    const res = await dispatch(logIn(credentials));
-    console.log(res);
-    if (res.payload = 'Request failed with status code 400') {
+    dispatch(logIn(credentials));
+
+    if (error) {
       toast.error(
         `The email and password You entered didn't match our records. Please, double check and try again`
       );
